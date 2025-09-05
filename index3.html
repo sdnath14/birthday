@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Pratick</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Stars */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 80px;
+            height: 100px;
+            border-radius: 50% 50% 45% 55%;
+            background: radial-gradient(circle at 30% 30%, #fff, var(--color));
+            animation: float 12s infinite ease-in;
+            opacity: 0.8;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 60px;
+            background: #666;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-400px) rotate(8deg);
+            }
+
+            100% {
+                transform: translateY(-800px) rotate(-8deg);
+            }
+        }
+
+        /* Flip Card */
+        .card {
+            width: 400px;
+            height: 500px;
+            perspective: 1500px;
+            z-index: 10;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .card.open .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d94f70;
+            cursor: pointer;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+
+        .photo {
+            width: 200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin-top: 15px;
+            font-size: 26px;
+            background: linear-gradient(90deg, #ff4081, #f06292, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .poem {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(255, 236, 239, 0.9);
+            font-style: italic;
+            color: #444;
+            font-size: 15px;
+            line-height: 1.7;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .poem h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #d94f70;
+        }
+
+        #playButton {
+            margin-top: 12px;
+            padding: 10px 18px;
+            font-size: 15px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #ff4081, #f06292);
+            color: white;
+            cursor: pointer;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Confetti */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            color: #ff4081;
+            font-size: 24px;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Balloons -->
+    <div class="balloon" style="--color:#ff7eb9; left:10%; animation-delay:0s;"></div>
+    <div class="balloon" style="--color:#ff65a3; left:25%; animation-delay:2s;"></div>
+    <div class="balloon" style="--color:#7afcff; left:40%; animation-delay:4s;"></div>
+    <div class="balloon" style="--color:#feff9c; left:60%; animation-delay:1s;"></div>
+    <div class="balloon" style="--color:#fff740; left:80%; animation-delay:3s;"></div>
+
+    <!-- Stars -->
+    <script>
+        for (let i = 0; i < 60; i++) {
+            const star = document.createElement("div");
+            star.className = "star";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.animationDelay = Math.random() * 3 + "s";
+            document.body.appendChild(star);
+        }
+    </script>
+
+    <!-- Flip Card -->
+    <div class="card" id="card">
+        <div class="card-inner">
+            <!-- Cover -->
+            <div class="card-front" id="cardFront">
+                💌 Open
+            </div>
+
+            <!-- Inside -->
+            <div class="card-back">
+                <img src="pratick.jpeg" alt="Pratick Birthday" class="photo">
+                <h1>Happy Birthday, Pratick</h1>
+                <p>Wishing you a day filled with love, laughter, and endless joy.<br>May all your dreams come true ✨</p>
+
+                <div class="poem">
+                    <h2>A Silent Benediction</h2>
+                    <p>
+                        Love may fade with passing time,<br>
+                        yet feelings carve their deeper rhyme.<br>
+                        You may journey where I cannot,<br>
+                        but my heart remains, an endless knot.<br><br>
+
+                        May your days be bright, your triumphs near,<br>
+                        success and joy attend you, clear.<br>
+                        Though absent when your moments rise,<br>
+                        I’ll smile for you beneath the skies.
+                    <h6>✍🏻:S.dnath</h6>
+                    </p>
+                </div>
+
+                <button id="playButton">💖 My Heart for You 💖</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti -->
+    <canvas id="confetti"></canvas>
+
+    <!-- Music -->
+    <audio id="bg-music" loop>
+        <source src="birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const music = document.getElementById("bg-music");
+        const playButton = document.getElementById("playButton");
+        const card = document.getElementById("card");
+        const cardFront = document.getElementById("cardFront");
+
+        // Flip card only when front is clicked
+        cardFront.addEventListener("click", () => {
+            card.classList.add("open"); // only open once
+        });
+
+        playButton.addEventListener("click", (e) => {
+            e.stopPropagation(); // prevent card flip
+            music.play();
+            playButton.innerText = "🎶 Playing for You... 💕";
+            playButton.disabled = true;
+        });
+
+        // Confetti
+        const confettiCanvas = document.getElementById("confetti");
+        const ctx = confettiCanvas.getContext("2d");
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        let confetti = [];
+        for (let i = 0; i < 200; i++) {
+            confetti.push({
+                x: Math.random() * confettiCanvas.width,
+                y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+                r: Math.random() * 6 + 4,
+                d: Math.random() * 50 + 50,
+                color: `hsl(${Math.random() * 360}, 70%, 65%)`,
+                tilt: Math.random() * 10 - 10
+            });
+        }
+
+        function drawConfetti() {
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confetti.forEach(c => {
+                ctx.beginPath();
+                ctx.fillStyle = c.color;
+                ctx.ellipse(c.x, c.y, c.r, c.r / 2, Math.PI / 4, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            updateConfetti();
+        }
+
+        function updateConfetti() {
+            confetti.forEach(c => {
+                c.y += c.d / 100;
+                c.x += Math.sin(c.y / 20);
+                if (c.y > confettiCanvas.height) {
+                    c.y = -10;
+                    c.x = Math.random() * confettiCanvas.width;
+                }
+            });
+        }
+
+        function animateConfetti() {
+            drawConfetti();
+            requestAnimationFrame(animateConfetti);
+        }
+        animateConfetti();
+
+        // Floating Hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 4 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(createHeart, 800);
+    </script>
+</body>
+
+</html>
